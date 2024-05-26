@@ -7,8 +7,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
  
     <body>
+        <h1 style="margin:0">Phonebook</h1>
         
-        <p>Hello World!</p>
+        <div style="display: flex;">
+            <div style="margin-top: 1em;">
+                <h3 style="margin: 1em 0 .5em 0">Add a new contact</h3>
+     
+                <form method="post" action="addcontact">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Name">
+                    <br>
+                    <input type="text" name="number" placeholder="Number">
+                    <br>
+                    <input type="submit" value="submit"/>
+                </form>
+            </div>
+
+            <div style="margin-left: 1em;">
+                {% for contact in contacts %}
+                    <p class="contact">{{ contact.name }} - {{ contact.number }}</p>
+                {% endfor %}
+
+                {% if contacts %}
+                    <form method="post" action="removecontacts" style="margin-bottom: auto;">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete all"/>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
  
     </body>
 </html>
