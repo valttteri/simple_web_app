@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_protect
 from .models import Contact
 
 # Create your views here.
 
+@csrf_protect
 def indexView(request):
     """Render the front page of the application"""
 
@@ -14,6 +16,7 @@ def indexView(request):
         {"contacts": contacts}
     )
 
+@csrf_protect
 def addContactView(request):
     """Create a new blog"""
 
@@ -25,9 +28,12 @@ def addContactView(request):
             name=name,
             number=number
         )
+    
+    contacts = Contact.objects.all()
 
-    return redirect("/")
+    return render(request, "index.html", {"contacts": contacts})
 
+@csrf_protect
 def removeContactsView(request):
     """Create a new blog"""
 
