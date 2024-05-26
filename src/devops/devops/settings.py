@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-ibfd7xl9p^3=+3hpgayuoucis7s-nd&k=rv2w9)5)y_+$m0z3i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "devops-valtteri1.fly.dev",
+    "localhost",
+    "127.0.0.1",
+    "0.0.0.0"
+]
 
 
 # Application definition
